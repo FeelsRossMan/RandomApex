@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">RandomApex</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+
+
+    <string name="click_for_random">Click for random loadout!</string>
+    <string name="random_button_text">ClickMe!</string>
+    <string name="return_home">Go back</string>
+    <string name="reroll_button_text">Re-roll</string>
+</resources>
