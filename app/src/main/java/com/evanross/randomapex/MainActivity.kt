@@ -9,6 +9,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.evanross.randomapex.apexCharacterScreen.ApexCharacterScreen
+import com.evanross.randomapex.homeScreen.HomeScreen
 import com.evanross.randomapex.ui.theme.RandomApexComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,7 +26,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     composable("home_screen") {
                         // Add the Composable function here for the home screen
-
+                        HomeScreen(navController = navController)
                     }
 
                     composable("apex_character_screen/{apexLegendId}",
@@ -38,7 +40,10 @@ class MainActivity : ComponentActivity() {
                             it.arguments?.getInt("apexLegendId")
                         }
                         // Add the Composable function here for the rolled character screen
-
+                        ApexCharacterScreen(
+                            navController = navController,
+                            characterId = apexLegendId ?: 0
+                        )
 
                     }
                 }
