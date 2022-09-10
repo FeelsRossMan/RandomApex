@@ -2,7 +2,7 @@ package com.evanross.randomapex.data
 
 import com.evanross.randomapex.R
 import com.evanross.randomapex.model.ApexCharacter
-
+import dagger.Provides
 
 
 object DataSource {

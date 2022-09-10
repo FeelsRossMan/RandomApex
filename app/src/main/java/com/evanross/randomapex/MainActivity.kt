@@ -3,41 +3,47 @@ package com.evanross.randomapex
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.remember
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.evanross.randomapex.ui.theme.RandomApexComposeTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             RandomApexComposeTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                val navController = rememberNavController()
+
+                NavHost(navController = navController, startDestination = "home_screen"
                 ) {
-                    Greeting("Android")
+                    composable("home_screen") {
+                        // Add the Composable function here for the home screen
+
+                    }
+
+                    composable("apex_character_screen/{apexLegendId}",
+                        arguments = listOf(
+                            navArgument("apexLegendId") {
+                                type = NavType.IntType
+                            }
+                        )
+                    ) {
+                        val apexLegendId = remember {
+                            it.arguments?.getInt("apexLegendId")
+                        }
+                        // Add the Composable function here for the rolled character screen
+
+
+                    }
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    RandomApexComposeTheme {
-        Greeting("Android")
-    }
-}
