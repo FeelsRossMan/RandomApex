@@ -8,4 +8,5 @@
     <string name="random_button_text">ClickMe!</string>
     <string name="return_home">Go back</string>
     <string name="reroll_button_text">Re-roll</string>
+    <string name="_0">0</string>
 </resources>
