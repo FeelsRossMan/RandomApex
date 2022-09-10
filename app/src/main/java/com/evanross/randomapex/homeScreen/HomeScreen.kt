@@ -1,32 +1,35 @@
 package com.evanross.randomapex.homeScreen
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltNavGraphViewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.navigate
 
 @Composable
 fun HomeScreen(
     navController: NavController,
     viewModel: HomeViewModel = hiltNavGraphViewModel()
 ) {
-    Surface(
-        color = MaterialTheme.colors.background,
+    Box(
         modifier = Modifier
             .fillMaxSize()
+            .background(MaterialTheme.colors.background)
     ) {
         Column(
             modifier = Modifier
+                .align(Alignment.Center)
         ) {
             Text(
-                text = "Click to roll a random Legend!"
+                text = "Click to roll a random Legend!",
+                textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier
                 .padding(40.dp)
@@ -34,9 +37,13 @@ fun HomeScreen(
             Button(onClick = {
                 viewModel.rollCharacter()
                 navController.navigate("apex_character_screen/${viewModel.character.value}")
-            }) {
+                },
+                modifier = Modifier
+                    .align(CenterHorizontally)
+            ) {
                 Text(
-                    text = "Roll"
+                    text = "Roll",
+                    textAlign = TextAlign.Center
                 )
             }
         }

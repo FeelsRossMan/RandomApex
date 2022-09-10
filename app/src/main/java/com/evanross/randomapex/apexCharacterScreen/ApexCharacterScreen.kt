@@ -9,8 +9,12 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.Center
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltNavGraphViewModel
 import androidx.navigation.NavController
@@ -28,7 +32,7 @@ fun ApexCharacterScreen(
     val apexCharacter = remember {
         DataSource.apexCharacters[characterId]
     }
-    Surface(
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .background(
@@ -36,17 +40,25 @@ fun ApexCharacterScreen(
                 MaterialTheme.colors.background
             )
     ) {
-        Column {
+        Column (
+            modifier = Modifier
+                .align(Center)
+        ){
             Image(
                 painter = painterResource(id = apexCharacter.imageResourceId),
                 contentDescription = apexCharacter.name,
                 modifier = Modifier
                     .fillMaxWidth(0.8f)
+                    .align(CenterHorizontally)
             )
             Spacer(modifier = Modifier
                 .padding(vertical = 20.dp)
             )
-            Text(text = apexCharacter.name)
+            Text(
+                text = apexCharacter.name,
+                modifier = Modifier
+                    .align(CenterHorizontally)
+            )
         }
     }
 
