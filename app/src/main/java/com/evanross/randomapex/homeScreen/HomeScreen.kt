@@ -29,7 +29,8 @@ fun HomeScreen(
         ) {
             Text(
                 text = "Click to roll a random Legend!",
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colors.onBackground
             )
             Spacer(modifier = Modifier
                 .padding(40.dp)
