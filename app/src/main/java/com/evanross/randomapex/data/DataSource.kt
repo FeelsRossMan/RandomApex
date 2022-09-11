@@ -1,5 +1,6 @@
 package com.evanross.randomapex.data
 
+import androidx.compose.ui.graphics.Color
 import com.evanross.randomapex.R
 import com.evanross.randomapex.model.ApexCharacter
 import dagger.Provides
@@ -10,7 +11,7 @@ object DataSource {
         ApexCharacter(
             R.drawable.ash,
             "Ash",
-            1
+            1,
         ),
         ApexCharacter(
             R.drawable.bangalore,

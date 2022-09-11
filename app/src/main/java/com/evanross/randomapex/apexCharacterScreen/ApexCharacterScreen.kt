@@ -1,6 +1,8 @@
 package com.evanross.randomapex.apexCharacterScreen
 
 import android.provider.ContactsContract
+import androidx.compose.animation.Crossfade
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -16,6 +18,7 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.TopStart
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusModifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -25,6 +28,7 @@ import com.evanross.randomapex.R
 import com.evanross.randomapex.data.DataSource
 import com.evanross.randomapex.homeScreen.HomeViewModel
 import com.evanross.randomapex.model.ApexCharacter
+import com.evanross.randomapex.util.nameToColor
 
 @Composable
 fun ApexCharacterScreen(
@@ -38,8 +42,13 @@ fun ApexCharacterScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(
-                //TODO: Setup the gradient from the legends color scheme
-                MaterialTheme.colors.background
+                //Done: Setup the gradient from the legends color scheme
+                Brush.verticalGradient(
+                    listOf(
+                        MaterialTheme.colors.background,
+                        nameToColor(apexCharacter.value.name)
+                    )
+                )
             )
     ) {
         Icon(
@@ -58,13 +67,17 @@ fun ApexCharacterScreen(
             modifier = Modifier
                 .align(Center)
         ){
-            Image(
-                painter = painterResource(id = apexCharacter.value.imageResourceId),
-                contentDescription = apexCharacter.value.name,
-                modifier = Modifier
-                    .fillMaxWidth(0.8f)
-                    .align(CenterHorizontally)
-            )
+            Crossfade(targetState = apexCharacter.value, animationSpec = tween(350)) {
+
+
+                Image(
+                    painter = painterResource(id = it.imageResourceId),
+                    contentDescription = it.name,
+                    modifier = Modifier
+                        .fillMaxWidth(0.8f)
+                        .align(CenterHorizontally)
+                )
+            }
             Spacer(modifier = Modifier
                 .padding(vertical = 20.dp)
             )
