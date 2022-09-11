@@ -37,12 +37,11 @@ class MainActivity : ComponentActivity() {
                         )
                     ) {
                         val apexLegendId = remember {
-                            it.arguments?.getInt("apexLegendId")
+                            it.arguments?.getInt("apexLegendId") //Left over from when I was passing in the characterId
                         }
                         // Add the Composable function here for the rolled character screen
                         ApexCharacterScreen(
-                            navController = navController,
-                            characterId = apexLegendId ?: 0
+                            navController = navController
                         )
 
                     }

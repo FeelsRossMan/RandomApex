@@ -5,10 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
@@ -32,11 +29,10 @@ import com.evanross.randomapex.model.ApexCharacter
 @Composable
 fun ApexCharacterScreen(
     navController: NavController,
-    viewModel: ApexCharacterViewModel = hiltNavGraphViewModel(),
-    characterId: Int
+    viewModel: ApexCharacterViewModel = hiltNavGraphViewModel()
 ) {
     val apexCharacter = remember {
-        DataSource.apexCharacters[characterId]
+        viewModel.apexCharacter
     }
     Box(
         modifier = Modifier
@@ -63,8 +59,8 @@ fun ApexCharacterScreen(
                 .align(Center)
         ){
             Image(
-                painter = painterResource(id = apexCharacter.imageResourceId),
-                contentDescription = apexCharacter.name,
+                painter = painterResource(id = apexCharacter.value.imageResourceId),
+                contentDescription = apexCharacter.value.name,
                 modifier = Modifier
                     .fillMaxWidth(0.8f)
                     .align(CenterHorizontally)
@@ -73,7 +69,7 @@ fun ApexCharacterScreen(
                 .padding(vertical = 20.dp)
             )
             Text(
-                text = apexCharacter.name,
+                text = apexCharacter.value.name,
                 color = MaterialTheme.colors.onBackground,
                 modifier = Modifier
                     .align(CenterHorizontally)
@@ -82,6 +78,18 @@ fun ApexCharacterScreen(
                 modifier = Modifier
                     .padding(vertical = 20.dp)
             )
+            Button(onClick = {
+                viewModel.setRandomApexCharacter()
+                },
+                modifier = Modifier
+                    .align(CenterHorizontally)
+                ) {
+                Text(
+                    text = "Re-roll",
+                    color = MaterialTheme.colors.onBackground,
+                    textAlign = TextAlign.Center
+                )
+            }
         }
     }
 
