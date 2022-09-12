@@ -1,5 +1,6 @@
 package com.evanross.randomapex.homeScreen
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -7,11 +8,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltNavGraphViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.navigate
+import com.evanross.randomapex.R
+import com.evanross.randomapex.model.ApexCharacter
 
 @Composable
 fun HomeScreen(
@@ -48,5 +52,21 @@ fun HomeScreen(
                 )
             }
         }
+    }
+}
+
+@Composable
+fun CharacterToggleIcon(
+    character: ApexCharacter,
+    viewModel: HomeViewModel,
+    modifier: Modifier = Modifier
+) {
+    Box(
+
+    ) {
+        Image(
+            painter = painterResource(id = character.iconArtImageId),
+            contentDescription = character.name
+        )
     }
 }
