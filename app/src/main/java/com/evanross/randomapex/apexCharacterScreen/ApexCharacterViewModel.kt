@@ -13,7 +13,7 @@ import kotlin.random.Random
 class ApexCharacterViewModel @Inject constructor(
 
 ): ViewModel() {
-
+    var animationComplete = false
     val apexCharacter = mutableStateOf<ApexCharacter>(
         getRandomApexCharacter()
     )
