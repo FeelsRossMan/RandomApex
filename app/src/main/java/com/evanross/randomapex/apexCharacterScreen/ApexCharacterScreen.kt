@@ -16,7 +16,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
@@ -114,7 +113,7 @@ fun RolledLoadoutSection(
 
 
             Image(
-                painter = painterResource(id = it.imageResourceId),
+                painter = painterResource(id = it.splashArtImageId),
                 contentDescription = it.name,
                 modifier = Modifier
                     .fillMaxWidth(0.8f)
