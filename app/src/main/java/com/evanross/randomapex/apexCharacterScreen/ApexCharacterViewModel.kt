@@ -15,12 +15,8 @@ class ApexCharacterViewModel @Inject constructor(
 
 ): ViewModel() {
 
-    val characters = DataSource.apexCharacters
-    val apexCharacter : MutableState<ApexCharacter>
-
-    init {
-        apexCharacter = mutableStateOf(characters[0])
-    }
+    private val characters = DataSource.apexCharacters
+    val apexCharacter : MutableState<ApexCharacter> = mutableStateOf(characters[0])
 
 
     var animationComplete = false

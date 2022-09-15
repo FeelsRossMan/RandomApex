@@ -34,11 +34,10 @@ import com.evanross.randomapex.util.nameToColor
 @Composable
 fun ApexCharacterScreen(
     navController: NavController,
-    id: Int,
     viewModel: ApexCharacterViewModel = hiltNavGraphViewModel()
 ) {
     val apexCharacter = remember {
-        viewModel.apexCharacter.value = viewModel.characters[id]
+        viewModel.setRandomApexCharacter()
         viewModel.apexCharacter
     }
     Box(
@@ -110,9 +109,7 @@ fun RolledLoadoutSection(
     val apexCharacter = remember {
         viewModel.apexCharacter
     }
-    Column(
-        
-    ) {
+    Column {
         Crossfade(targetState = apexCharacter.value, animationSpec = tween(350)) {
 
 
