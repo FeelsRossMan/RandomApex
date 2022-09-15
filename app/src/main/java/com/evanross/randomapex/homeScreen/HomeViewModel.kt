@@ -16,15 +16,36 @@ class HomeViewModel @Inject constructor(
 
 ) : ViewModel() {
 
-    var character = mutableStateOf(0)
 
-    var allowedCharacterList: List<MutableState<Boolean>> = List(DataSource.apexCharacters.size) {
+    var characters = DataSource.apexCharacters
+    var returnId = 0
+
+    private var allowedCharacterList: List<MutableState<Boolean>> = List(DataSource.apexCharacters.size) {
         mutableStateOf(true)
     }
 
 
-    fun rollCharacter() {
-        character.value = Random.nextInt(0, DataSource.apexCharacters.size)
+    fun rollCharacter() : Boolean{
+        val validList = getValidIndexes()
+        if (validList.isEmpty()) return false
+        returnId = validList[Random.nextInt(0, validList.size)]
+        return true
     }
 
+    fun isSelected(id: Int) : Boolean? {
+        if (id < 0 || id >= allowedCharacterList.size) return null
+        return allowedCharacterList[id].value
+    }
+
+    fun select(id: Int) {
+        allowedCharacterList[id].value = !allowedCharacterList[id].value
+    }
+
+    private fun getValidIndexes() : List<Int> {
+        var listOfValid = mutableListOf<Int>()
+        for(i in allowedCharacterList.indices) {
+            if (allowedCharacterList[i].value) listOfValid.add(i)
+        }
+        return listOfValid.toList()
+    }
 }

@@ -44,7 +44,8 @@ class MainActivity : ComponentActivity() {
                         }
                         // Add the Composable function here for the rolled character screen
                         ApexCharacterScreen(
-                            navController = navController
+                            navController = navController,
+                            id = apexLegendId?:0
                         )
 
                     }

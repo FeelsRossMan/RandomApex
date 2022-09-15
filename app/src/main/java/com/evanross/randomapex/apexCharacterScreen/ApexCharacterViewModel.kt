@@ -4,7 +4,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.evanross.randomapex.data.DataSource
 import com.evanross.randomapex.model.ApexCharacter
-import dagger.hilt.android.HiltAndroidApp
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlin.random.Random
@@ -13,8 +12,9 @@ import kotlin.random.Random
 class ApexCharacterViewModel @Inject constructor(
 
 ): ViewModel() {
+    val characters = DataSource.apexCharacters
     var animationComplete = false
-    val apexCharacter = mutableStateOf<ApexCharacter>(
+    val apexCharacter = mutableStateOf(
         getRandomApexCharacter()
     )
     fun setRandomApexCharacter() {
