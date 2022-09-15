@@ -5,6 +5,8 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.evanross.randomapex.data.AllowedCharactersList
+import com.evanross.randomapex.data.AllowedCharactersList.allowedCharacterList
 import com.evanross.randomapex.data.DataSource
 import com.evanross.randomapex.model.ApexCharacter
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,9 +22,7 @@ class HomeViewModel @Inject constructor(
     var characters = DataSource.apexCharacters
     var returnId = 0
 
-    private var allowedCharacterList: List<MutableState<Boolean>> = List(DataSource.apexCharacters.size) {
-        mutableStateOf(true)
-    }
+    private var allowedCharacterList: List<MutableState<Boolean>> = AllowedCharactersList.allowedCharacterList
 
 
     fun rollCharacter() : Boolean{
