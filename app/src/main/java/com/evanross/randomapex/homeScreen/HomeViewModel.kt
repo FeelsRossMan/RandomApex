@@ -42,7 +42,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getValidIndexes() : List<Int> {
-        var listOfValid = mutableListOf<Int>()
+        val listOfValid = mutableListOf<Int>()
         for(i in allowedCharacterList.indices) {
             if (allowedCharacterList[i].value) listOfValid.add(i)
         }

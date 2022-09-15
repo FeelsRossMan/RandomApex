@@ -14,14 +14,20 @@ import kotlin.random.Random
 class ApexCharacterViewModel @Inject constructor(
 
 ): ViewModel() {
+
     val characters = DataSource.apexCharacters
+    val apexCharacter : MutableState<ApexCharacter>
+
+    init {
+        apexCharacter = mutableStateOf(characters[0])
+    }
+
+
     var animationComplete = false
 
     private var allowedCharacterList: List<MutableState<Boolean>> = AllowedCharactersList.allowedCharacterList
 
-    val apexCharacter = mutableStateOf(
-        getRandomApexCharacter()
-    )
+
 
 
     fun setRandomApexCharacter() {
@@ -41,14 +47,16 @@ class ApexCharacterViewModel @Inject constructor(
     //Taken from the HomeViewModel. I'll have to change this later on though
     private fun getRandomApexCharacter() : ApexCharacter{
         val validList = getValidIndexes()
+        if (validList.isEmpty()) return apexCharacter.value
         return getApexCharacter(validList[Random.nextInt(0, validList.size)])
     }
 
     private fun getValidIndexes() : List<Int> {
-        var listOfValid = mutableListOf<Int>()
+        val listOfValid = mutableListOf<Int>()
         for(i in allowedCharacterList.indices) {
             if (allowedCharacterList[i].value) listOfValid.add(i)
         }
+        listOfValid.remove(apexCharacter.value.id)
         return listOfValid.toList()
     }
 

@@ -84,8 +84,10 @@ fun ApexCharacterScreen(
                 modifier = Modifier
                     .padding(vertical = 20.dp)
             )
-            Button(onClick = {
-                viewModel.setRandomApexCharacter()
+            Button(
+                onClick = {
+                    viewModel.setRandomApexCharacter()
+
                 },
                 modifier = Modifier
                     .align(CenterHorizontally)
