@@ -1,6 +1,7 @@
 package com.evanross.randomapex.homeScreen
 
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.evanross.randomapex.data.AllowedCharactersList
 import com.evanross.randomapex.data.DataSource
@@ -12,6 +13,7 @@ class HomeViewModel @Inject constructor(
 
 ) : ViewModel() {
 
+    var legendsDropDownOpen = mutableStateOf(true)
 
     var characters = DataSource.apexCharacters
 

@@ -2,6 +2,7 @@ package com.evanross.randomapex.data
 
 import com.evanross.randomapex.R
 import com.evanross.randomapex.model.ApexCharacter
+import com.evanross.randomapex.model.ApexGun
 
 
 object DataSource {
@@ -138,5 +139,8 @@ object DataSource {
             "Wraith",
             21
         )
+    )
+    val apexGuns = listOf<ApexGun>(
+
     )
 }
