@@ -3,6 +3,7 @@ package com.evanross.randomapex
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.remember
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -14,9 +15,11 @@ import com.evanross.randomapex.homeScreen.HomeScreen
 import com.evanross.randomapex.ui.theme.RandomApexComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+    @OptIn(ExperimentalAnimationApi::class)
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             RandomApexComposeTheme {
@@ -29,19 +32,16 @@ class MainActivity : ComponentActivity() {
                         HomeScreen(navController = navController)
                     }
 
-                    composable("apex_character_screen/{apexLegendId}",
+                    composable("apex_character_screen/",
                         arguments = listOf(
                             navArgument("apexLegendId") {
                                 type = NavType.IntType
                             }
                         )
                     ) {
-                        val apexLegendId = remember {
-                            it.arguments?.getInt("apexLegendId") //Left over from when I was passing in the characterId
-                        }
                         // Add the Composable function here for the rolled character screen
                         ApexCharacterScreen(
-                            navController = navController
+                            navController = navController,
                         )
 
                     }

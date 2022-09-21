@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.Color
 import com.evanross.randomapex.ui.theme.*
 import timber.log.Timber
 
-fun nameToColor(name: String) : Color {
+fun nameToColor(name: String?) : Color {
     return when(name) {
         "Ash" -> Ash
         "Bangalore" -> Bangalore

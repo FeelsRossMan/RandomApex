@@ -16,7 +16,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
@@ -38,6 +37,7 @@ fun ApexCharacterScreen(
     viewModel: ApexCharacterViewModel = hiltNavGraphViewModel()
 ) {
     val apexCharacter = remember {
+        viewModel.setRandomApexCharacter()
         viewModel.apexCharacter
     }
     Box(
@@ -83,8 +83,10 @@ fun ApexCharacterScreen(
                 modifier = Modifier
                     .padding(vertical = 20.dp)
             )
-            Button(onClick = {
-                viewModel.setRandomApexCharacter()
+            Button(
+                onClick = {
+                    viewModel.setRandomApexCharacter()
+
                 },
                 modifier = Modifier
                     .align(CenterHorizontally)
@@ -107,14 +109,12 @@ fun RolledLoadoutSection(
     val apexCharacter = remember {
         viewModel.apexCharacter
     }
-    Column(
-        
-    ) {
+    Column {
         Crossfade(targetState = apexCharacter.value, animationSpec = tween(350)) {
 
 
             Image(
-                painter = painterResource(id = it.imageResourceId),
+                painter = painterResource(id = it.splashArtImageId),
                 contentDescription = it.name,
                 modifier = Modifier
                     .fillMaxWidth(0.8f)
